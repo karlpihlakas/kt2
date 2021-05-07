@@ -1,3 +1,4 @@
+import java.util.Arrays;
 import java.util.Scanner;
 
 interface Taht {
@@ -10,7 +11,7 @@ interface Taht {
 
 
 
-class LetterReader implements Taht{
+class LetterReader implements Taht {
 
 
     public static void main(String[] args) {
@@ -22,14 +23,34 @@ class LetterReader implements Taht{
         System.out.println(answer);
 
         int totalCharacters = 0;
+        int totalCharactersInSentence = 0;
+        int counter = 0;
         char temp;
         for (int i = 0; i < answer.length(); i++) {
-
             temp = answer.charAt(i);
             if (temp == 'a')
                 totalCharacters++;
         }
-        System.out.println(totalCharacters);
+        String[] newAnswer = new String[0];
+        for (int i = 0; i < answer.length(); i++) {
+            newAnswer = answer.split(" ");
+        }
+        for (String i : newAnswer) {
+            totalCharactersInSentence = 0;
+            counter++;
+            for (int j = 0; j < i.length(); j++) {
+                temp = i.charAt(j);
+                if (temp == 'a')
+
+                    totalCharactersInSentence++;
+            }
+
+
+
+
+        System.out.println("Terve lause a tähtede arv on: "+totalCharacters);
+        System.out.println(counter+ ". lauses on " +" " + totalCharactersInSentence + " a tähte");
+        }
     }
 
 
