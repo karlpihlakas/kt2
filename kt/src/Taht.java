@@ -1,3 +1,4 @@
+import java.io.*;
 import java.util.Arrays;
 import java.util.Scanner;
 
@@ -14,13 +15,24 @@ interface Taht {
 class LetterReader implements Taht {
 
 
-    public static void main(String[] args) {
+    public static void main(String[] args)  {
         System.out.println("Sisestage sona");
         Scanner scan = new Scanner(System.in);
-
         String answer = scan.nextLine();
-
         System.out.println(answer);
+
+        File log = new File("MyFile.txt");
+        try{
+            if(log.exists()==false){
+                System.out.println("We had to make a new file.");
+                log.createNewFile();
+            }
+            PrintWriter out = new PrintWriter(new FileWriter(log, true));
+            out.append(answer + "\n");
+            out.close();
+        }catch(IOException e){
+            System.out.println("COULD NOT LOG!!");
+        }
 
         int totalCharacters = 0;
         int totalCharactersInSentence = 0;
@@ -41,16 +53,15 @@ class LetterReader implements Taht {
             for (int j = 0; j < i.length(); j++) {
                 temp = i.charAt(j);
                 if (temp == 'a')
-
                     totalCharactersInSentence++;
             }
 
-
-
-
         System.out.println("Terve lause a tähtede arv on: "+totalCharacters);
         System.out.println(counter+ ". lauses on " +" " + totalCharactersInSentence + " a tähte");
+
+
         }
+
     }
 
 
